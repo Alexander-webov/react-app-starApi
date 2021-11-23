@@ -1,0 +1,10 @@
+.person-detalis{
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+}
+.person-detalis img{
+    width: 100%;
+    max-width: 200px;
+    border-radius: 6px;
+}

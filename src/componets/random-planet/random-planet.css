@@ -1,0 +1,11 @@
+
+.Randomplanet{
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+    margin-bottom: 40px;
+}
+.Randomplanet img{
+    width: 270px;
+    border-radius: 6px;
+}
