@@ -1,0 +1,13 @@
+.header{
+    align-items: center;
+}
+
+.header ul li{
+    font-size: 20px;
+   line-height: 1.2;
+    margin-left: 15px;
+    list-style: none;
+}
+.header a{
+ text-decoration: none;
+}

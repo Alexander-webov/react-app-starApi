@@ -1,11 +1,19 @@
-
 .Randomplanet{
+margin-bottom: 40px;
+}
+
+.Randomplanet-item{
     display: flex;
     flex-direction: row;
     padding: 25px;
-    margin-bottom: 40px;
+    
 }
 .Randomplanet img{
     width: 270px;
     border-radius: 6px;
+}
+.term{
+    font-weight: 600;
+    color: rgb(112, 124, 120);
+    font-size: 18px;
 }
