@@ -8,11 +8,11 @@ export default class SwapiService {
     //Люди
     async getAllpeople() {
         const res = await this.getResourse(`https://swapi.dev/api/people/`);
-        return res.results.map(this.transformPlanrt)
+        return res.results.map(this.transformPerson)
     }
     async getPersone(id) {
-        const person = await this.getResourse(`https://swapi.dev/api/people/${id}`)
-        return this.transformPlanrt(person)
+        const person = await this.getResourse(`https://swapi.dev/api/people/${id}/`)
+        return this.transformPerson(person)
     }
 
     //Планеты
@@ -21,7 +21,7 @@ export default class SwapiService {
         return res.results.map(this.transformPlanrt)
     }
     async getPlanet(id) {
-        const planet = await this.getResourse(`https://swapi.dev/api/planets/${id}`)
+        const planet = await this.getResourse(`https://swapi.dev/api/planets/${id}/`)
         return this.transformPlanrt(planet)
     }
 
@@ -31,8 +31,8 @@ export default class SwapiService {
         return res.results.map(this.transformStarShip)
     }
     async getStarShip(id) {
-        const starShip = await this.getResourse(`https://swapi.dev/api/starships/${id}`);
-        return this.transformPlanrt(starShip)
+        const starShip = await this.getResourse(`https://swapi.dev/api/starships/${id}/`);
+        return this.transformStarShip(starShip)
     }
 
     _extractId(item) {
@@ -40,7 +40,7 @@ export default class SwapiService {
         return item.url.match(idRegExp)[1];
     }
 
-    transformPlanrt(planet) {
+    transformPlanrt = (planet) => {
         return {
             id: this._extractId(planet),
             name: planet.name,
@@ -49,7 +49,7 @@ export default class SwapiService {
             diameter: planet.diameter,
         }
     }
-    transformStarShip(starShip) {
+    transformStarShip = (starShip) => {
         return {
             id: this._extractId(starShip),
             name: starShip.name,
@@ -62,28 +62,13 @@ export default class SwapiService {
             cargoCapacity: starShip.cargoCapacity,
         }
     }
-    transformPerson(person) {
+    transformPerson = (person) => {
         return {
             id: this._extractId(person),
             name: person.name,
             gender: person.gender,
-            birthYear: person.birthYear,
-            eyeColor: person.eyeColor,
+            birthYear: person.birth_year,
+            eyeColor: person.eye_color
         }
     }
 }
-
-
-
-/*
-const swapi = new SwapiService();
-
-swapi.getAllPlanets().then(data => {
-    console.log(data);
-    data.map(name => console.log('Планета ' + name.name))
-})
-
-swapi.getAllStarShips().then(data => {
-    console.log(data);
-    data.map(name => console.log('Космические корабли ' + name.name))
-}) */

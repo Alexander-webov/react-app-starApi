@@ -1,18 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Itemlist = () => {
+import './itemList.css'
+
+import Spinner from '../spinner/spinner'
+import SwapiSevice from '../../services/swapi-sevice';
+const Itemlist = ({ onItemSelect }) => {
+
+    const [peopleList, setpeopleList] = useState(null);
+
+    let swapiSevice = new SwapiSevice();
+
+
+    useEffect(() => {
+        swapiSevice.getAllpeople().then(person => {
+            setpeopleList(person)
+        }).catch()
+
+    }, [])
+
+
+
+    if (!peopleList) {
+        return <Spinner />
+    }
+
+
+
+
     return (
         <div>
             <ul className="item-list list-group">
-                <li className="list-group-item">
-                    Luke
-                </li>
-                <li className="list-group-item">
-                    Dart
-                </li>
-                <li className="list-group-item">
-                    r2-d2
-                </li>
+                {
+                    peopleList.map(el => {
+                        return (
+                            <li className="list-group-item"
+                                key={el.id}
+                                onClick={() => onItemSelect(el.id)}
+                            >
+                                {el.name}
+                            </li>
+                        )
+                    })
+                }
             </ul>
         </div>
     );
